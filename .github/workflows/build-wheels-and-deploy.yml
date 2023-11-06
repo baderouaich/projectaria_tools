@@ -74,15 +74,6 @@ jobs:
           fi
       - name: Install projectaria_tools
         run: |
-          # Installing Python and dependencies
-          if [ "$RUNNER_OS" == "Linux" ]; then
-            sudo pip3 install numpy  rerun-sdk
-          elif [ "$RUNNER_OS" == "macOS" ]; then
-            pip3 install numpy  rerun-sdk
-          else
-            echo "$RUNNER_OS not supported"
-            exit 1
-          fi
           # Build and install Python bindings
           CMAKE_BUILD_PARALLEL_LEVEL=4 pip3 install .
           # remove the build folder
