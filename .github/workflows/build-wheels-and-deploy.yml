@@ -65,7 +65,7 @@ jobs:
               # Install system deps with Homebrew
               brew install cmake
               # VRS dependencies
-              brew install boost fmt sophus googletest glog lz4 zstd xxhash libpng jpeg-turbo
+              brew install boost fmt googletest glog lz4 zstd xxhash libpng jpeg-turbo
               # Install gsed for easy string replacement
               brew install gsed
           else
@@ -88,7 +88,7 @@ jobs:
           rm -rf build
       - name: Build wheels for CPython
         run: |
-          python3 -m cibuildwheel --output-dir dist
+          CMAKE_BUILD_PARALLEL_LEVEL=4 python3 -m cibuildwheel --output-dir dist
       - uses: actions/upload-artifact@v2
         with:
           name: python-package-distributions
